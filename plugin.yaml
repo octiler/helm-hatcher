@@ -1,0 +1,13 @@
+name: "hatcher"
+version: "0.1.0"
+usage: "Initilize charts from starter charts within a git repository."
+description: |-
+  This plugin initilize charts from starter charts within a git repository.
+ignoreFlags: false
+useTunnel: false
+command: "$HELM_PLUGIN_DIR/hatcher.sh"
+platformCommand:
+  - os: linux
+    command: "$HELM_PLUGIN_DIR/hatcher.bash"
+  - os: darwin
+    command: "$HELM_PLUGIN_DIR/hatcher.zsh"
