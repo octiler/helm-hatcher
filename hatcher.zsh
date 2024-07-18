@@ -13,6 +13,11 @@ function initializer(){
     )
 cat << EOF > .gitignore
 /charts/
+# Various IDEs
+.project
+.idea/
+*.tmproj
+.vscode/
 EOF
     cd ..
     helm create -p ${STARTERNAME} ${CHARTNAME}
@@ -46,19 +51,17 @@ EOF
 PASSTHRU=()
 while [[ $# -gt 0 ]]
 do
-key="$1"
-
-# Parse arguments
-case $key in
-    --help)
-    HELP=TRUE
-    shift # past argument
-    ;;
-    *)    # unknown option
-    PASSTHRU+=("$1") # save it in an array for later
-    shift # past argument
-    ;;
-esac
+    key="$1"
+    case $key in
+        --help)
+            HELP=TRUE
+            shift
+            ;;
+        *)
+            PASSTHRU+=("$1")
+            shift
+            ;;
+    esac
 done
 
 # Restore PASSTHRU parameters
