@@ -1,0 +1,24 @@
+#!/bin/bash
+
+[[ $# -eq 1 ]] && cat << EOF && exit 0
+init
+EOF
+
+command=$1 && shift
+
+case $command in
+    "init")
+        ;;
+    *)
+        exit 0
+        ;;
+esac
+
+case $# in
+    1)
+        find $HELM_DATA_HOME/starters -maxdepth 1 -mindepth 1 -type d -exec basename {} \;
+        ;;
+    *)
+        exit 0
+        ;;
+esac
